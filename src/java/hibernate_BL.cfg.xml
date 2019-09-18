@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>        
+      
+        <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+        <property name="hibernate.connection.url">
+   <!--jdbc:oracle:thin:@172.16.24.198:1521/CBVMP_DB-->
+            jdbc:oracle:thin:@(DESCRIPTION=
+            (ADDRESS_LIST =
+            <!--FOR RND uncomment below-->  
+            <!--(ADDRESS = (PROTOCOL = TCP)(HOST = 172.16.24.198)(PORT = 1521))--> 
+            <!--FOR TEST_BED uncomment below (55,56,57,53,51) -->                
+            <!--            (ADDRESS = (PROTOCOL = TCP)(HOST = 172.16.26.55)(PORT = 1521))
+            (ADDRESS = (PROTOCOL = TCP)(HOST = 172.16.26.56)(PORT = 1521))
+            (ADDRESS = (PROTOCOL = TCP)(HOST = 172.16.26.57)(PORT = 1521))
+            (ADDRESS = (PROTOCOL = TCP)(HOST = 172.16.26.53)(PORT = 1521))
+            (ADDRESS = (PROTOCOL = TCP)(HOST = 172.16.26.51)(PORT = 1521))-->
+            <!--FOR TEST_45 uncomment below (45) -->   
+            <!--(ADDRESS = (PROTOCOL = TCP)(HOST = 172.16.26.45)(PORT = 1521))-->
+            <!--FOR TEST_161 uncomment below (161) -->   
+            (ADDRESS = (PROTOCOL = TCP)(HOST = 172.29.1.161)(PORT = 1521))
+            <!--FOR TEST_TEMP_114 uncomment below (14) -->   
+            <!--(ADDRESS = (PROTOCOL = TCP)(HOST = 172.16.16.114)(PORT = 1521))-->
+            
+            <!--FOR LIVE uncomment below (65,66,67) -->   
+<!--            (ADDRESS = (PROTOCOL = TCP)(HOST = rac-scan.dc.cbvmpdb)(PORT = 1521))-->
+            <!--(ADDRESS = (PROTOCOL = TCP)(HOST = 172.29.1.61)(PORT = 1521))-->  
+<!--              (ADDRESS = (PROTOCOL = TCP)(HOST = 172.29.1.65)(PORT = 1521))
+            (ADDRESS = (PROTOCOL = TCP)(HOST = 172.29.1.66)(PORT = 1521))
+            (ADDRESS = (PROTOCOL = TCP)(HOST = 172.29.1.67)(PORT = 1521))-->
+            <!--
+            )-->
+            
+                                <!--FOR LIVE DR uncomment below (61) -->                
+                        <!--(ADDRESS = (PROTOCOL = TCP)(HOST = 172.29.2.61)(PORT = 1521))-->
+         
+            )
+            
+            (CONNECT_DATA= 
+            <!--FOR RND uncomment below-->                
+            <!--(SERVICE_NAME=CBVMP_DB)-->
+            <!--FOR TEST_BED or TEST_45 or test_161 uncomment below-->
+                        (SERVICE_NAME=sildb)
+            <!--FOR TEMP_TEST_114 uncomment below-->
+            <!--(SERVICE_NAME = ORCL)-->
+            <!--FOR LIVE uncomment below -->  
+            <!--(SERVICE_NAME = CBVMP)-->
+            ))
+        </property>
+        <property name="hibernate.connection.username">CMPO_BL</property>
+        <!--<property name="hibernate.connection.password">CMPO_CWP0_BLINK#</property>-->
+        
+        <property name="hibernate.connection.password">CMPO_BL</property>
+    
+        <property name="hibernate.show_sql">true</property> 
+        <property name="hibernate.current_session_context_class">thread</property>
+    
+        <!--   C3P0 configuration -->
+        
+        <property name="hibernate.c3p0.min_size">1</property>
+        <property name="hibernate.c3p0.max_size">5</property>
+        <property name="hibernate.c3p0.timeout">120</property>
+        <property name="hibernate.c3p0.max_statements">0</property>
+        <property name="hibernate.c3p0.idle_test_period">10</property>    
+    
+        <mapping class="cbvmp.service.data.model.OTPModel"/>
+        <mapping class="cbvmp.service.data.model.OTPCancelModel"/>
+        <mapping class="cbvmp.service.data.model.OTPExtentionModel"/>
+        <mapping class="cbvmp.service.data.model.SimRegistrationModel"/>
+        <mapping class="cbvmp.service.data.model.SimDeregistrationModel"/> 
+        <mapping class="cbvmp.service.data.model.CorporateNIDModel"/>      
+        <mapping class="cbvmp.service.data.model.CorporateSimRegReregModel"/>
+        <mapping class="cbvmp.service.data.model.CorporateSimTransferModel"/>
+        <mapping class="cbvmp.service.data.model.SimTransferModel"/>
+        <mapping class="cbvmp.service.data.model.CorporateSimDeregistrationModel"/>
+        <mapping class="cbvmp.service.data.model.SimReplacementModel"/>
+        <mapping class="cbvmp.service.data.model.MnpRegistrationModel"/>
+        <mapping class="cbvmp.service.data.model.MnpDeregistrationModel"/>
+        <mapping class="cbvmp.service.data.model.BulkDeregistrationModel"/>
+        <mapping class="cbvmp.service.data.model.ExpTimeModel"/>
+ 
+    </session-factory>
+</hibernate-configuration>
